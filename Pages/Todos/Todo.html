@@ -1,0 +1,137 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    <style>
+        .heading-dark {
+            background-color: black !important;
+            color: white !important;
+        }
+    </style>
+    <!-- scripts  -->
+    <script src="../../node_modules/bundles.js"></script>
+    <script src="../../assets/js/Todos/todo.js"></script>
+    <link rel="stylesheet" href="../../node_modules/bundle.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <h2>Todos</h2>
+            </div>
+            <div class="col-xs-12 col-sm-6" style="margin-top:20px;">
+                <button type="button" class="btn btn-primary pull-right" onclick="todoOpenModal_click(null);">
+                    Add
+                </button>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading heading-dark">
+                Filter
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label>User</label>
+                            <select id="todoFilterUserSelect" class="form-control">
+                            </select>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label>Name</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6">
+                            <label>Is Done</label>
+                            <select class="form-control">
+                                <option value="-1">Both</option>
+                                <option value="1">done</option>
+                                <option value="0">undone</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <table class="table table-striped table-bordered">
+            <thead class="heading-dark">
+                <tr>
+                    <th>User</th>
+                    <th>Name</th>
+                    <th>Is Done ?</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody id="todos">
+            </tbody>
+        </table>
+    </div>
+
+    <div id="todoModal" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h4 class="modal-title">Add Todo</h4>
+
+                        </div>
+                        <div class="col-xs-6">
+                            <i class="fa fa-times pull-right" data-dismiss="modal"
+                                style="color:red; margin-top:10px; cursor: pointer;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input id="todoIdInputHidden" type="hidden" />
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                <label>User</label>
+                                <select id="todoModalSelectUser" class=form-control>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input id="todoModalInputName" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+
+                                        <input id="todoModalInputIsDone" type="checkbox" />
+                                        Is Done ?
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-md pull-right" style="margin-left:20px;"
+                        onclick="todoSave_click()">Save</button>
+                    <button class="btn  btn-md pull-right" data-dismiss="modal"
+                        style="background-color:gray; color:white;">Back</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

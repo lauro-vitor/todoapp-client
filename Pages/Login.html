@@ -1,0 +1,76 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="../node_modules/bundles.js"></script>
+    <link rel="stylesheet" href="../node_modules/bundle.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-12">
+                    <h1>Login</h3>
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12 col-sm-6">
+                    <label>Login</label>
+                    <input id="LoginInput" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12 col-sm-6">
+                    <label>Password</label>
+                    <input id="PasswordInput" type="password" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group col-xs-12">
+                <div class="col-xs-12">
+                    <button id="LoginButton" type="button" class="btn btn-success col-xs-2">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#LoginButton').on("click", function () {
+                Login();
+            });
+        });
+
+        function Login() {
+            $.ajax({
+                url: "http://localhost:5000/api/Login/",
+                type: "POST",
+                cache: false,
+                contentType: "application/json",
+                data: JSON.stringify({
+                    Login: $('#LoginInput').val(),
+                    Password: $('#PasswordInput').val(),
+                }),
+                success: function (data, textStatus, jqXHR) {
+                    localStorage.setItem("login_token", data.token);
+                    // $.cookie('login_token', data.token, {
+                    //     path: "/",
+                    //     expires: 0.09
+                    // });
+                    window.open('file:///C:/Users/Pichau/source/repos/TodoAppClient/Pages/Todos/Todo.html', '_self')
+                },
+                error: function (jqXHR, textStatus, erroThrow) {
+                    if (jqXHR.status === 401)
+                        alert('your login information is wrong!');
+                    else
+                        alert(jqXHR.responseText);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
